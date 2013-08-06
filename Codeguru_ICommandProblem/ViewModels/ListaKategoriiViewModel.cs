@@ -9,9 +9,12 @@ namespace Codeguru_ICommandProblem.ViewModels
         public ListaKategoriiViewModel()
         {
             var kategoria = ListaKategorii.NowaLista();
+            
             Produkty = new ObservableCollection<KategoriaViewModel>(
-                (from k in kategoria select TransalteToViewModel(k))
-                .ToArray());
+                kategoria
+                    .Select(TransalteToViewModel)
+                    .ToArray()
+                );
         }
 
         private KategoriaViewModel TransalteToViewModel(Kategoria model)
